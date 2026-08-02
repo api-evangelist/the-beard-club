@@ -1,0 +1,13 @@
+generated: '2026-07-21'
+method: generated
+source: https://thebeardclub.com/llms.txt
+skills:
+- file: the-beard-club-shop-and-checkout.md
+  name: Shop and checkout at The Beard Club (UCP)
+  api: mcp/the-beard-club-mcp.yml
+  operations:
+  - search_catalog
+  - create_cart
+  - create_checkout
+  - update_checkout
+  - complete_checkout

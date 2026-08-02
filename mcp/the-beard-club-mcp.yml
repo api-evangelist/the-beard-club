@@ -1,0 +1,54 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://thebeardclub.com/.well-known/ucp
+docs: https://thebeardclub.com/llms.txt
+server:
+  name: the-beard-club-ucp-shopping
+  protocol: UCP
+  protocol_version: '2026-04-08'
+  supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  transport: http
+  url: https://thebeardclub.com/api/ucp/mcp
+  canonical_url: https://the-beard-club-official.myshopify.com/api/ucp/mcp
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+  auth: >-
+    tools/list requires UCP agent-profile discovery (an agent profile URI must be
+    presented). Checkout completion requires contemporaneous buyer approval.
+notes: >-
+  The Beard Club exposes a native Shopify Universal Commerce Protocol (UCP) shopping
+  MCP server for agent-driven commerce. The endpoint is live (POST returns JSON-RPC;
+  tools/list is gated behind UCP agent-profile discovery). Tools below are the
+  published UCP shopping flow documented in llms.txt; full JSON schemas are at the
+  OpenRPC schema URL.
+capabilities:
+- dev.ucp.shopping.catalog.search
+- dev.ucp.shopping.catalog.lookup
+- dev.ucp.shopping.cart
+- dev.ucp.shopping.checkout
+- dev.ucp.shopping.fulfillment
+- dev.ucp.shopping.discount
+- dev.ucp.shopping.order
+- dev.shopify.catalog
+payment_handlers:
+- com.google.pay
+- dev.shopify.card
+- dev.shopify.shop_pay
+tools:
+- name: search_catalog
+  description: Find products matching the buyer's intent (catalog search).
+  capability: dev.ucp.shopping.catalog.search
+- name: create_cart
+  description: Create a cart and add the desired items.
+  capability: dev.ucp.shopping.cart
+- name: create_checkout
+  description: Start the purchase flow for a cart.
+  capability: dev.ucp.shopping.checkout
+- name: update_checkout
+  description: Set shipping address and fulfillment method on a checkout.
+  capability: dev.ucp.shopping.fulfillment
+- name: complete_checkout
+  description: Finalize the purchase — requires explicit buyer payment approval.
+  capability: dev.ucp.shopping.checkout

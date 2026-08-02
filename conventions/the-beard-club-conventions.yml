@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://thebeardclub.com/llms.txt
+docs: https://ucp.dev/2026-04-08/specification/overview/
+summary: >-
+  The Beard Club's agent-facing surface is the Shopify Universal Commerce Protocol
+  (UCP). These are the cross-cutting conventions an agent must follow. There is no
+  documented request idempotency key, so no Idempotency pointer is asserted.
+authentication:
+  agent: UCP MCP (tools/list requires agent-profile discovery); read-only browsing needs no auth
+  customer: Shopify Customer Account API (OIDC / OAuth2 authorization code + PKCE)
+  ref: authentication/the-beard-club-authentication.yml
+versioning:
+  style: dated protocol versions
+  current: '2026-04-08'
+  supported:
+  - '2026-04-08'
+  - '2026-01-23'
+  negotiation: /.well-known/ucp advertises supported_versions; requires protocol min 2026-04-08 for fulfillment/discount/catalog capabilities
+rate_limiting:
+  signal: HTTP 429
+  guidance: MCP endpoint is rate-limited per IP; back off on 429 responses
+context_parameters:
+- name: context.address_country
+  purpose: accurate pricing and availability
+- name: context.currency
+  purpose: currency selection
+buyer_approval:
+  invariant: checkout must not be completed without explicit contemporaneous buyer consent
+  fallback: route payment through Shop Pay (https://shop.app/SKILL.md) when contemporaneous approval is unavailable
+read_only_endpoints:
+- 'GET /products/{handle}.json'
+- 'GET /collections/{handle}/products.json'
+- 'GET /collections/all'
+- 'GET /search?q={query}&type=product'
+- 'GET /sitemap.xml'
+idempotency:
+  supported: false
+  note: not documented in the public UCP/agent surface
+cross_links:
+  mcp: mcp/the-beard-club-mcp.yml
+  authentication: authentication/the-beard-club-authentication.yml
+  well_known: well-known/the-beard-club-well-known.yml

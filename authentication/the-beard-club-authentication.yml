@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://thebeardclub.com/.well-known/openid-configuration
+docs: https://shopify.dev/docs/api/customer
+summary:
+  types:
+  - oauth2
+  - openIdConnect
+  oauth2_flows:
+  - authorizationCode
+  pkce: true
+  note: >-
+    Customer-facing auth is Shopify's Customer Account API (OIDC / OAuth 2.0
+    Authorization Code + PKCE). Agent commerce is transacted over the UCP MCP
+    endpoint; checkout completion additionally requires contemporaneous buyer
+    approval. No merchant/admin API key surface is publicly exposed.
+schemes:
+- name: ShopifyCustomerAccount
+  type: openIdConnect
+  issuer: https://shopify.com/authentication/5260181607
+  openIdConnectUrl: https://thebeardclub.com/.well-known/openid-configuration
+  authorization_endpoint: https://shopify.com/authentication/5260181607/oauth/authorize
+  token_endpoint: https://shopify.com/authentication/5260181607/oauth/token
+  jwks_uri: https://shopify.com/authentication/5260181607/.well-known/jwks.json
+  end_session_endpoint: https://shopify.com/authentication/5260181607/logout
+  grant_types:
+  - authorization_code
+  - refresh_token
+  - 'urn:ietf:params:oauth:grant-type:jwt-bearer'
+  response_types:
+  - code
+  code_challenge_methods:
+  - S256
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  id_token_signing_alg:
+  - RS256
+  scopes:
+  - openid
+  - email
+  - customer-account-api:full
+  - customer-account-mcp-api:full
+  sources:
+  - well-known/the-beard-club-openid-configuration.json

@@ -1,7 +1,28 @@
 aid: the-beard-club
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/the-beard-club.png
 name: The Beard Club
-description: The Beard Club is a company surfaced as a portfolio company of 500-global and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  The Beard Club is a men's grooming and beard-care brand selling beard oils, balms,
+  washes, aftershave, grooming kits, trimmers, and subscription grooming boxes through
+  its Shopify-powered online store at thebeardclub.com. Beyond the consumer storefront,
+  the store is agent-commerce ready: it implements the Universal Commerce Protocol
+  (UCP 2026-04-08) with a native Model Context Protocol (MCP) endpoint at /api/ucp/mcp,
+  a machine-readable /llms.txt and /agents.md, UCP service discovery at /.well-known/ucp,
+  Shopify Customer Account OpenID Connect authentication, and read-only product and
+  collection JSON endpoints — so AI shopping assistants can search the catalog, build
+  carts, and complete buyer-approved checkouts programmatically.
 url: https://raw.githubusercontent.com/api-evangelist/the-beard-club/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +32,68 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- E-commerce
+- Retail
+- Men's Grooming
+- Consumer Goods
+- Shopify
+- Agent Commerce
+- UCP
+- MCP
+- Subscription
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: The Beard Club UCP Shopping MCP
+  description: >-
+    Native Shopify Universal Commerce Protocol (UCP 2026-04-08) shopping service,
+    exposed as a Model Context Protocol endpoint for agent-driven commerce — catalog
+    search, cart, checkout, fulfillment, discount, and order capabilities. Checkout
+    completion requires contemporaneous buyer approval.
+  humanURL: https://thebeardclub.com/llms.txt
+  baseURL: https://thebeardclub.com/api/ucp/mcp
+  properties:
+  - type: MCPServer
+    url: mcp/the-beard-club-mcp.yml
+  - type: Authentication
+    url: authentication/the-beard-club-authentication.yml
+  - type: OAuthScopes
+    url: scopes/the-beard-club-scopes.yml
 common:
 - type: Website
   url: https://thebeardclub.com
+- type: Documentation
+  url: https://thebeardclub.com/llms.txt
+- type: LLMsTxt
+  url: llms/the-beard-club-llms.txt
+- type: MCPServer
+  url: mcp/the-beard-club-mcp.yml
+- type: WellKnown
+  url: well-known/the-beard-club-well-known.yml
+- type: Authentication
+  url: authentication/the-beard-club-authentication.yml
+- type: OAuthScopes
+  url: scopes/the-beard-club-scopes.yml
+- type: Conformance
+  url: conformance/the-beard-club-conformance.yml
+- type: Conventions
+  url: conventions/the-beard-club-conventions.yml
+- type: DomainSecurity
+  url: security/the-beard-club-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: PrivacyPolicy
+  url: https://thebeardclub.com/policies/privacy-policy
+- type: TermsOfService
+  url: https://thebeardclub.com/policies/terms-of-service
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1
