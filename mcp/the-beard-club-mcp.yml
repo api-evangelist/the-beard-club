@@ -14,15 +14,12 @@ server:
   url: https://thebeardclub.com/api/ucp/mcp
   canonical_url: https://the-beard-club-official.myshopify.com/api/ucp/mcp
   schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
-  auth: >-
-    tools/list requires UCP agent-profile discovery (an agent profile URI must be
-    presented). Checkout completion requires contemporaneous buyer approval.
-notes: >-
-  The Beard Club exposes a native Shopify Universal Commerce Protocol (UCP) shopping
-  MCP server for agent-driven commerce. The endpoint is live (POST returns JSON-RPC;
-  tools/list is gated behind UCP agent-profile discovery). Tools below are the
-  published UCP shopping flow documented in llms.txt; full JSON schemas are at the
-  OpenRPC schema URL.
+  auth: tools/list requires UCP agent-profile discovery (an agent profile URI must be presented). Checkout
+    completion requires contemporaneous buyer approval.
+notes: The Beard Club exposes a native Shopify Universal Commerce Protocol (UCP) shopping MCP server for
+  agent-driven commerce. The endpoint is live (POST returns JSON-RPC; tools/list is gated behind UCP agent-profile
+  discovery). Tools below are the published UCP shopping flow documented in llms.txt; full JSON schemas
+  are at the OpenRPC schema URL.
 capabilities:
 - dev.ucp.shopping.catalog.search
 - dev.ucp.shopping.catalog.lookup
@@ -52,3 +49,11 @@ tools:
 - name: complete_checkout
   description: Finalize the purchase — requires explicit buyer payment approval.
   capability: dev.ucp.shopping.checkout
+deployment:
+  mode: remote
+  endpoint: https://thebeardclub.com/api/ucp/mcp
+  verified: probed
+  probe: live
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
