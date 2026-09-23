@@ -2,22 +2,30 @@ generated: '2026-07-21'
 method: searched
 source: live probes of https://thebeardclub.com/.well-known/*
 host: https://thebeardclub.com
-documents:
-- path: /.well-known/ucp
-  status: 200
-  file: the-beard-club-ucp.json
-  note: Universal Commerce Protocol merchant profile (UCP 2026-04-08) — services, capabilities, payment handlers
-- path: /.well-known/openid-configuration
-  status: 200
-  file: the-beard-club-openid-configuration.json
-  note: Shopify Customer Account API OIDC discovery (issuer shopify.com/authentication/5260181607)
-- path: /.well-known/oauth-authorization-server
-  status: 200
-  file: the-beard-club-oauth-authorization-server.json
-  note: RFC 8414 authorization-server metadata (identical to OIDC config)
-- path: /.well-known/security.txt
-  status: 404
-- path: /.well-known/api-catalog
-  status: 404
-- path: /.well-known/ai-plugin.json
-  status: 404
+hosts:
+- host: https://thebeardclub.com
+  documents:
+  - path: /.well-known/ucp
+    status: 200
+    file: the-beard-club-ucp.json
+    note: Universal Commerce Protocol merchant profile (UCP 2026-04-08) — services, capabilities, payment
+      handlers
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: the-beard-club-openid-configuration.json
+    note: Shopify Customer Account API OIDC discovery (issuer shopify.com/authentication/5260181607)
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: the-beard-club-oauth-authorization-server.json
+    note: RFC 8414 authorization-server metadata (identical to OIDC config)
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.
