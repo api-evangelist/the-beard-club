@@ -87,6 +87,9 @@ apis:
     url: authentication/the-beard-club-authentication.yml
   - type: OAuthScopes
     url: scopes/the-beard-club-scopes.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 common:
 - type: Website
   url: https://thebeardclub.com
